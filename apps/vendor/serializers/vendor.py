@@ -32,3 +32,19 @@ class VendorCUDSerializer(AppWriteOnlyModelSerializer):
             "email",
             "address",
         ]
+
+
+class VendorDetailSerializer(AppReadOnlyModelSerializer):
+    """Vendor Detail Serializer"""
+
+    class Meta(AppReadOnlyModelSerializer.Meta):
+        model = Vendor
+        fields = [
+            "id",
+            "uuid",
+            "first_name",
+            "last_name",
+            "phone_number",
+            "email",
+            "address",
+        ]

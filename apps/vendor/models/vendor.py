@@ -1,4 +1,5 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 from apps.common.models import (
     COMMON_BLANK_AND_NULLABLE_FIELD_CONFIG,
@@ -12,7 +13,7 @@ class Vendor(BaseModel):
 
     first_name = models.CharField(max_length=COMMON_CHAR_FIELD_MAX_LENGTH)
     last_name = models.CharField(max_length=COMMON_CHAR_FIELD_MAX_LENGTH)
-    phone_number = models.PhoneNumberField(**COMMON_BLANK_AND_NULLABLE_FIELD_CONFIG)
+    phone_number = PhoneNumberField(**COMMON_BLANK_AND_NULLABLE_FIELD_CONFIG)
     email = models.EmailField(unique=True)
     address = models.TextField(**COMMON_BLANK_AND_NULLABLE_FIELD_CONFIG)
 

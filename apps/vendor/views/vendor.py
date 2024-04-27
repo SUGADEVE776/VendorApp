@@ -2,11 +2,6 @@ from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from apps.common.views import (
-    AppModelCUDAPIViewSet,
-    AppModelListAPIViewSet,
-    AppModelRetrieveAPIViewSet,
-)
 from apps.vendor.models import Vendor
 from apps.vendor.serializers import VendorDetailSerializer, VendorSerializer
 

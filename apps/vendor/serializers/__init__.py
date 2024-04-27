@@ -1,1 +1,1 @@
-from .vendor import VendorListSerializer, VendorCUDSerializer, VendorDetailSerializer
+from .vendor import VendorSerializer, VendorDetailSerializer

@@ -1,1 +1,1 @@
-from .vendor import VendorCUDAPIViewSet, VendorListAPIViewSet, VendorDetailAPIViewSet
+from .vendor import VendorModelViewSet

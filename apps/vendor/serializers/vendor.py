@@ -1,3 +1,5 @@
+from rest_framework import serializers
+
 from apps.common.serializers import (
     AppReadOnlyModelSerializer,
     AppWriteOnlyModelSerializer,
@@ -5,30 +7,25 @@ from apps.common.serializers import (
 from apps.vendor.models import Vendor
 
 
-class VendorListSerializer(AppReadOnlyModelSerializer):
-    """Vendor List Serializer"""
+class VendorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vendor
+        fields = ["id", "name", "contact_details", "address", "vendor_code"]
 
-    class Meta(AppReadOnlyModelSerializer.Meta):
+
+class VendorDetailSerializer(serializers.ModelSerializer):
+    """Vendor Detail Serializer"""
+
+    class Meta:
         model = Vendor
         fields = [
             "id",
-            "first_name",
-            "last_name",
-            "phone_number",
-            "email",
-        ]
-
-
-class VendorCUDSerializer(AppWriteOnlyModelSerializer):
-    """Vendor CUD Serializer"""
-
-    class Meta(AppWriteOnlyModelSerializer.Meta):
-        model = Vendor
-        fields = [
-            "id",
-            "first_name",
-            "last_name",
-            "phone_number",
-            "email",
+            "name",
+            "contact_details",
             "address",
+            "vendor_code",
+            "on_time_delivery_rate",
+            "quality_rating_avg",
+            "average_response_time",
+            "fulfillment_rate",
         ]

@@ -1,2 +1,2 @@
 from .vendor import VendorModelViewSet
-from .purchase_order import PurchaseOrderModelViewSet
+from .purchase_order import PurchaseOrderModelViewSet, POAcknowledgeAPIView

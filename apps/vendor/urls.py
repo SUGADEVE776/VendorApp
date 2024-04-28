@@ -1,7 +1,11 @@
 from django.urls import path
 from rest_framework.routers import SimpleRouter
 
-from apps.vendor.views import PurchaseOrderModelViewSet, VendorModelViewSet
+from apps.vendor.views import (
+    POAcknowledgeAPIView,
+    PurchaseOrderModelViewSet,
+    VendorModelViewSet,
+)
 
 app_name = "vendor"
 
@@ -13,4 +17,10 @@ router.register(f"{BASE_URL}/vendors", VendorModelViewSet)
 
 router.register(f"{BASE_URL}/purchase_orders", PurchaseOrderModelViewSet)
 
-urlpatterns = [] + router.urls
+
+urlpatterns = [
+    path(
+        f"{BASE_URL}/purchase_orders/<int:po_id>/acknowledge/",
+        POAcknowledgeAPIView.as_view(),
+    ),
+] + router.urls

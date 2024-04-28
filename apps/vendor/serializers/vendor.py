@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from apps.common.serializers import (
@@ -8,9 +9,15 @@ from apps.vendor.models import Vendor
 
 
 class VendorSerializer(serializers.ModelSerializer):
+    """Vendor list cud serializer"""
+
+    user = serializers.PrimaryKeyRelatedField(
+        queryset=User.objects.all(), required=False
+    )
+
     class Meta:
         model = Vendor
-        fields = ["id", "name", "contact_details", "address", "vendor_code"]
+        fields = ["id", "name", "contact_details", "address", "vendor_code", "user"]
 
 
 class VendorDetailSerializer(serializers.ModelSerializer):

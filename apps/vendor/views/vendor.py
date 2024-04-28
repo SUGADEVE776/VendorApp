@@ -18,9 +18,14 @@ class VendorModelViewSet(ModelViewSet):
         data = request.data
         email = data.pop("email")
         user, _ = User.objects.get_or_create(
-            email=email, defaults={"first_name": data.get("name")}
+            email=email,
+            defaults={
+                "first_name": data.get("name"),
+                "username": email,
+            },  # considering email as username
         )
         user.set_password(email)
+        request.data["user"] = user
         return super().create(request, *args, **kwargs)
 
     def retrieve(self, request, *args, **kwargs):

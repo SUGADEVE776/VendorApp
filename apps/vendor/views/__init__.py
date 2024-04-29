@@ -1,2 +1,3 @@
 from .vendor import VendorModelViewSet
 from .purchase_order import PurchaseOrderModelViewSet, POAcknowledgeAPIView
+from .performance import PerformanceDetailViewSet

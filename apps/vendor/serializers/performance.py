@@ -1,10 +1,13 @@
 from rest_framework import serializers
 
+from apps.common.serializers import BaseIDNameSerializer
 from apps.vendor.models import Performance
 
 
 class PerformanceDetailSerializer(serializers.ModelSerializer):
     """Performance Detail Serializer"""
+
+    vendor = BaseIDNameSerializer()
 
     class Meta:
         model = Performance

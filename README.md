@@ -92,7 +92,7 @@ You can use [Postman](https://www.postman.com/) to test the API endpoints.
         "item2" :8
     },
     "quantity": 111,
-    "status": "completed"
+    "status": "pending"
 }
 ```
 # b. Issue to Vendor.

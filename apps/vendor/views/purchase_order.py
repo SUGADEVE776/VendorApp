@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
+from apps.vendor.config import PurchaseOrderChoices
 from apps.vendor.models import PurchaseOrder
 from apps.vendor.serializers import (
     PurchaseOrderDetailSerializer,
@@ -40,4 +41,26 @@ class POAcknowledgeAPIView(APIView):
         instance.calculate_average_response_time()
         return Response(
             {"data": f"Purchase Order {instance.po_number} Acknowledged Successfully"}
+        )
+
+
+# Adding this API to complete the Purchase order from Vendor POV
+
+
+class POCompleteAPIView(APIView):
+    """Complete the Purchase Order"""
+
+    def post(self, request, *args, **kwargs):
+        """Handle on post"""
+
+        instance = get_object_or_404(
+            PurchaseOrder.objects.all(), id=kwargs.get("po_id")
+        )
+        if instance.vendor and not instance.vendor == self.request.user.related_vendor:
+            return Response({"data": "Invalid Purchae Order"})
+        instance.status = PurchaseOrderChoices.completed
+        instance.completed_data = timezone.now()
+        instance.save()
+        return Response(
+            {"data": f"Purchase Order {instance.po_number} Completed Successfully"}
         )

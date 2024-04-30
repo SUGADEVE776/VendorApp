@@ -12,7 +12,7 @@ class VendorSerializer(serializers.ModelSerializer):
     """Vendor list cud serializer"""
 
     user = serializers.PrimaryKeyRelatedField(
-        queryset=User.objects.all(), required=False
+        queryset=User.objects.all(), required=False, allow_null=True
     )
 
     class Meta:

@@ -25,7 +25,7 @@ urlpatterns = [
         POAcknowledgeAPIView.as_view(),
     ),
     path(
-        f"{BASE_URL}/vendors/<int:vendor_id>/performance",
+        f"{BASE_URL}/vendors/<int:vendor_id>/performance/",
         PerformanceDetailAPIView.as_view(),
     ),
 ] + router.urls

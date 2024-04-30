@@ -2,11 +2,6 @@ from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from apps.common.views import (
-    AppModelCUDAPIViewSet,
-    AppModelListAPIViewSet,
-    AppModelRetrieveAPIViewSet,
-)
 from apps.vendor.models import Vendor
 from apps.vendor.serializers import VendorDetailSerializer, VendorSerializer
 
@@ -23,9 +18,14 @@ class VendorModelViewSet(ModelViewSet):
         data = request.data
         email = data.pop("email")
         user, _ = User.objects.get_or_create(
-            email=email, defaults={"first_name": data.get("name")}
+            email=email,
+            defaults={
+                "first_name": data.get("name"),
+                "username": email,
+            },  # considering email as username
         )
         user.set_password(email)
+        request.data["user"] = user
         return super().create(request, *args, **kwargs)
 
     def retrieve(self, request, *args, **kwargs):

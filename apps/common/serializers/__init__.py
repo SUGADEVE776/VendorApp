@@ -3,4 +3,5 @@ from .base import (
     AppReadOnlyModelSerializer,
     AppSerializer,
     AppWriteOnlyModelSerializer,
+    BaseIDNameSerializer,
 )

@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
@@ -25,7 +26,8 @@ class VendorModelViewSet(ModelViewSet):
             },  # considering email as username
         )
         user.set_password(email)
-        request.data["user"] = user
+        Token.objects.get_or_create(user=user)
+        request.data["user"] = user.id
         return super().create(request, *args, **kwargs)
 
     def retrieve(self, request, *args, **kwargs):

@@ -5,7 +5,7 @@ Follow these steps to run the project locally on your machine:
 
 ### 1. Prerequisites
 
-- [Python](https://www.python.org/) (version X.X.X)
+- [Python](https://www.python.org/) (version 3.10.9)
 - [Git](https://git-scm.com/) (optional, for cloning the repository)
 
 ### 2. Set Up Virtual Environment

@@ -4,6 +4,7 @@ from rest_framework.routers import SimpleRouter
 from apps.vendor.views import (
     PerformanceDetailAPIView,
     POAcknowledgeAPIView,
+    POCompleteAPIView,
     PurchaseOrderModelViewSet,
     VendorModelViewSet,
 )
@@ -23,6 +24,10 @@ urlpatterns = [
     path(
         f"{BASE_URL}/purchase_orders/<int:po_id>/acknowledge/",
         POAcknowledgeAPIView.as_view(),
+    ),
+    path(
+        f"{BASE_URL}/purchase_orders/<int:po_id>/complete/",
+        POCompleteAPIView.as_view(),
     ),
     path(
         f"{BASE_URL}/vendors/<int:vendor_id>/performance/",

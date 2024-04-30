@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
-from apps.vendor.models import PurchaseOrder
+from apps.vendor.models import PurchaseOrder, Vendor
 
 
 class PurchaseOrderSerializer(serializers.ModelSerializer):
@@ -11,6 +11,9 @@ class PurchaseOrderSerializer(serializers.ModelSerializer):
     issue_date = serializers.DateTimeField(required=False)
     completed_date = serializers.DateTimeField(required=False, allow_null=True)
     quality_rating = serializers.FloatField(required=False, allow_null=True)
+    vendor = serializers.PrimaryKeyRelatedField(
+        queryset=Vendor.objects.all(), required=False, allow_null=True
+    )
 
     class Meta:
         model = PurchaseOrder
